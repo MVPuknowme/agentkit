@@ -36,13 +36,6 @@ AgentKit is a framework for easily enabling AI agents to take actions onchain. I
       - [Environment Variables](#environment-variables-1)
       - [Exporting Smart Wallet Information](#exporting-smart-wallet-information)
       - [Key Differences from Regular Wallets](#key-differences-from-regular-wallets)
-    - [LegacyCdpWalletProvider](#legacycdpwalletprovider)
-      - [Network Configuration](#network-configuration)
-      - [Configuring from an existing CDP API Wallet](#configuring-from-an-existing-cdp-api-wallet)
-      - [Configuring from a mnemonic phrase](#configuring-from-a-mnemonic-phrase)
-      - [Exporting a wallet](#exporting-a-wallet-1)
-      - [Importing a wallet from `WalletData` JSON string](#importing-a-wallet-from-walletdata-json-string)
-      - [Configuring LegacyCdpWalletProvider gas parameters](#configuring-legacycdpwalletprovider-gas-parameters)
     - [ViemWalletProvider](#viemwalletprovider)
       - [Configuring ViemWalletProvider gas parameters](#configuring-viemwalletprovider-gas-parameters)
     - [PrivyWalletProvider](#privywalletprovider)
@@ -149,12 +142,12 @@ _Prerequisites_:
 - Set `OPENAI_API_KEY` environment variable.
 
 ```bash
-npm install @langchain @langchain/langgraph @langchain/openai
+npm install langchain @langchain/langgraph @langchain/openai
 ```
 
 ```typescript
 import { getLangChainTools } from "@coinbase/agentkit-langchain";
-import { createReactAgent } from "@langchain/langgraph/prebuilt";
+import { createAgent } from "langchain";
 import { ChatOpenAI } from "@langchain/openai";
 
 const tools = await getLangChainTools(agentKit);
@@ -163,8 +156,8 @@ const llm = new ChatOpenAI({
   model: "gpt-4o-mini",
 });
 
-const agent = createReactAgent({
-  llm,
+const agent = createAgent({
+  model: llm,
   tools,
 });
 ```
@@ -296,6 +289,59 @@ const agent = createReactAgent({
 </table>
 </details>
 <details>
+<summary><strong>dTelecom</strong></summary>
+<table width="100%">
+<tr>
+    <td width="200"><code>buy_credits</code></td>
+    <td width="768">Buys dTelecom credits with USDC via x402 payment protocol.</td>
+</tr>
+<tr>
+    <td width="200"><code>get_account</code></td>
+    <td width="768">Gets dTelecom account details including credit balance and session limits.</td>
+</tr>
+<tr>
+    <td width="200"><code>get_transactions</code></td>
+    <td width="768">Lists credit transactions for the account.</td>
+</tr>
+<tr>
+    <td width="200"><code>get_sessions</code></td>
+    <td width="768">Lists active and completed sessions with status and costs.</td>
+</tr>
+<tr>
+    <td width="200"><code>create_agent_session</code></td>
+    <td width="768">Creates a bundled voice agent session with WebRTC + STT + TTS.</td>
+</tr>
+<tr>
+    <td width="200"><code>extend_agent_session</code></td>
+    <td width="768">Extends an active bundled agent session.</td>
+</tr>
+<tr>
+    <td width="200"><code>create_webrtc_token</code></td>
+    <td width="768">Creates a standalone WebRTC room token for real-time audio/video.</td>
+</tr>
+<tr>
+    <td width="200"><code>extend_webrtc_token</code></td>
+    <td width="768">Extends an active WebRTC token duration.</td>
+</tr>
+<tr>
+    <td width="200"><code>create_stt_session</code></td>
+    <td width="768">Creates a standalone speech-to-text session.</td>
+</tr>
+<tr>
+    <td width="200"><code>extend_stt_session</code></td>
+    <td width="768">Extends an active STT session duration.</td>
+</tr>
+<tr>
+    <td width="200"><code>create_tts_session</code></td>
+    <td width="768">Creates a standalone text-to-speech session.</td>
+</tr>
+<tr>
+    <td width="200"><code>extend_tts_session</code></td>
+    <td width="768">Extends an active TTS session character limit.</td>
+</tr>
+</table>
+</details>
+<details>
 <summary><strong>DefiLlama</strong></summary>
 <table width="100%">
 <tr>
@@ -318,6 +364,47 @@ const agent = createReactAgent({
 <tr>
     <td width="200"><code>route</code></td>
     <td width="768">Find and execute a route for entering or exiting any DeFi position or swapping any ERC20 tokens.</td>
+</tr>
+</table>
+</details>
+<details>
+<summary><strong>ERC-8004</strong></summary>
+<table width="100%">
+<tr>
+    <td width="200"><code>append_response</code></td>
+    <td width="768">Appends an off-chain response URI to a reputation feedback entry (ERC-8004 Reputation Registry).</td>
+</tr>
+<tr>
+    <td width="200"><code>get_agent_feedback</code></td>
+    <td width="768">Lists feedback for an agent with optional filters (reviewers, value range, tags).</td>
+</tr>
+<tr>
+    <td width="200"><code>get_agent_info</code></td>
+    <td width="768">Returns identity, endpoints, capabilities, reputation summary, and status for a registered agent.</td>
+</tr>
+<tr>
+    <td width="200"><code>get_owned_agents</code></td>
+    <td width="768">Lists agents owned by a wallet address (defaults to the connected wallet).</td>
+</tr>
+<tr>
+    <td width="200"><code>give_feedback</code></td>
+    <td width="768">Submits on-chain feedback (and optional IPFS payload) for an agent; cannot be used on your own agent.</td>
+</tr>
+<tr>
+    <td width="200"><code>register_agent</code></td>
+    <td width="768">Registers a new agent on the ERC-8004 Identity Registry (mint NFT and set registration URI).</td>
+</tr>
+<tr>
+    <td width="200"><code>revoke_feedback</code></td>
+    <td width="768">Revokes feedback previously submitted by the connected wallet.</td>
+</tr>
+<tr>
+    <td width="200"><code>search_agents</code></td>
+    <td width="768">Discovers agents via semantic search, capability/status filters, reputation bounds, sort, and pagination.</td>
+</tr>
+<tr>
+    <td width="200"><code>update_agent_metadata</code></td>
+    <td width="768">Updates agent metadata, endpoints (MCP/A2A), trust models, taxonomies, and status flags.</td>
 </tr>
 </table>
 </details>
@@ -575,24 +662,44 @@ const agent = createReactAgent({
     <td width="768">Gets historical APY and TVL data for a specific vault over time.</td>
 </tr>
 <tr>
-    <td width="200"><code>deposit</code></td>
-    <td width="768">Deposits assets into a selected vault to start earning yield.</td>
+    <td width="200"><code>transaction_context</code></td>
+    <td width="768">Gets the available balances and operations for a given vault.</td>
 </tr>
 <tr>
-    <td width="200"><code>redeem</code></td>
-    <td width="768">Redeems assets from a vault to withdraw principal and earned yield.</td>
+    <td width="200"><code>execute_step</code></td>
+    <td width="768">Executes an operation on a given vault.</td>
 </tr>
 <tr>
-    <td width="200"><code>claim</code></td>
-    <td width="768">Claims rewards from a vault without withdrawing the principal deposit.</td>
-</tr>
-<tr>
-    <td width="200"><code>balances</code></td>
-    <td width="768">Retrieves user's native token and ERC20 token balances across supported networks.</td>
+    <td width="200"><code>user_idle_assets</code></td>
+    <td width="768">Gets the user's idle assets.</td>
 </tr>
 <tr>
     <td width="200"><code>positions</code></td>
     <td width="768">Gets user's current positions in vaults including balances and unclaimed rewards.</td>
+</tr>
+<tr>
+    <td width="200"><code>rewards_context</code></td>
+    <td width="768">Gets the available rewards for a given user.</td>
+</tr>
+<tr>
+    <td width="200"><code>claim_rewards</code></td>
+    <td width="768">Claims requested rewards for a given user.</td>
+</tr>
+<tr>
+    <td width="200"><code>benchmark_apy</code></td>
+    <td width="768">Gets the benchmark APY.</td>
+</tr>
+<tr>
+    <td width="200"><code>historical_benchmark_apy</code></td>
+    <td width="768">Gets the historical benchmark APY.</td>
+</tr>
+<tr>
+    <td width="200"><code>total_vault_returns</code></td>
+    <td width="768">Gets the total returns for a given vault.</td>
+</tr>
+<tr>
+    <td width="200"><code>user_events</code></td>
+    <td width="768">Gets the user's events for a given vault.</td>
 </tr>
 </table>
 </details>
@@ -1071,100 +1178,6 @@ const walletData = await walletProvider.exportWallet();
 3. **Gasless Transactions**: Smart wallets can be configured to use paymasters for sponsored transactions
 4. **Batch Operations**: Multiple operations can be bundled into a single user operation
 5. **Base Networks Only**: Currently limited to base-sepolia and base-mainnet
-
-### LegacyCdpWalletProvider
-
-The `LegacyCdpWalletProvider` is a wallet provider that uses the Coinbase Developer Platform (CDP) [v1 Wallet API](https://docs.cdp.coinbase.com/wallet-api/v1/introduction/welcome).
-
-#### Network Configuration
-
-The `LegacyCdpWalletProvider` can be configured to use a specific network by passing the `networkId` parameter to the `configureWithWallet` method. The `networkId` is the ID of the network you want to use. You can find a list of [supported networks on the CDP API docs](https://docs.cdp.coinbase.com/cdp-apis/docs/networks).
-
-```typescript
-import { LegacyCdpWalletProvider } from "@coinbase/agentkit";
-
-const walletProvider = await CdpWalletProvider.configureWithWallet({
-  apiKeyId: "CDP API KEY NAME",
-  apiKeyPrivate: "CDP API KEY SECRET",
-  networkId: "base-mainnet",
-});
-```
-
-#### Configuring from an existing CDP API Wallet
-
-If you already have a CDP API Wallet, you can configure the `LegacyCdpWalletProvider` by passing the `wallet` parameter to the `configureWithWallet` method.
-
-```typescript
-import { LegacyCdpWalletProvider } from "@coinbase/agentkit";
-import { Wallet } from "@coinbase/coinbase-sdk";
-const walletProvider = await LegacyCdpWalletProvider.configureWithWallet({
-  wallet,
-  apiKeyId: "CDP API KEY NAME",
-  apiKeyPrivate: "CDP API KEY SECRET",
-});
-```
-
-#### Configuring from a mnemonic phrase
-
-The `LegacyCdpWalletProvider` can be configured from a mnemonic phrase by passing the `mnemonicPhrase` and `networkId` parameters to the `configureWithWallet` method. If `networkId` is not defined, the `LegacyCdpWalletProvider` will fall back to the env var `NETWORK_ID`, and if that is not defined, it will default to `base-sepolia`.
-
-```typescript
-import { LegacyCdpWalletProvider } from "@coinbase/agentkit";
-
-const walletProvider = await LegacyCdpWalletProvider.configureWithWallet({
-  mnemonicPhrase: "MNEMONIC PHRASE",
-  networkId: "base-sepolia",
-});
-```
-
-#### Exporting a wallet
-
-The `LegacyCdpWalletProvider` can export a wallet by calling the `exportWallet` method.
-
-```typescript
-import { LegacyCdpWalletProvider } from "@coinbase/agentkit";
-
-const walletProvider = await LegacyCdpWalletProvider.configureWithWallet({
-  mnemonicPhrase: "MNEMONIC PHRASE",
-  networkId: "base-sepolia",
-});
-
-const walletData = await walletProvider.exportWallet();
-```
-
-#### Importing a wallet from `WalletData` JSON string
-
-The `LegacyCdpWalletProvider` can import a wallet from a `WalletData` JSON string by passing the `cdpWalletData` parameter to the `configureWithWallet` method.
-
-```typescript
-import { LegacyCdpWalletProvider } from "@coinbase/agentkit";
-
-const walletProvider = await LegacyCdpWalletProvider.configureWithWallet({
-  cdpWalletData: "WALLET DATA JSON STRING",
-  apiKeyId: "CDP API KEY NAME",
-  apiKeyPrivate: "CDP API KEY SECRET",
-});
-```
-
-#### Configuring LegacyCdpWalletProvider gas parameters
-
-The `LegacyCdpWalletProvider` also exposes parameters for effecting the gas calculations.
-
-```typescript
-import { LegacyCdpWalletProvider } from "@coinbase/agentkit";
-
-const walletProvider = await LegacyCdpWalletProvider.configureWithWallet({
-  cdpWalletData: "WALLET DATA JSON STRING",
-  apiKeyId: "CDP API KEY NAME",
-  apiKeyPrivate: "CDP API KEY SECRET",
-  gas: {
-    gasLimitMultiplier: 2.0, // Adjusts gas limit estimation
-    feePerGasMultiplier: 2.0, // Adjusts max fee per gas
-  },
-});
-```
-
-**Note**: Gas parameters only impact the `walletProvider.sendTransaction` behavior. Actions that do not rely on direct transaction calls, such as `deploy_token`, `deploy_contract`, and `native_transfer`, remain unaffected.
 
 ### ViemWalletProvider
 

@@ -1,5 +1,46 @@
 # AgentKit Changelog
 
+## 0.11.0
+
+### Minor Changes
+
+- [#1021](https://github.com/coinbase/agentkit/pull/1021) [`1da829e`](https://github.com/coinbase/agentkit/commit/1da829e006f8b7e7811e43490e6fe423b4650736) Thanks [@phdargen](https://github.com/phdargen)! - Upgraded to zod v4, langchain v1 and vercel ai sdk v6
+
+- [#923](https://github.com/coinbase/agentkit/pull/923) [`e809805`](https://github.com/coinbase/agentkit/commit/e8098053561b895e6309a8789266e2704c5353c7) Thanks [@phdargen](https://github.com/phdargen)! - Deprecated legacy cdp-wallet
+
+### Patch Changes
+
+- [#966](https://github.com/coinbase/agentkit/pull/966) [`b211701`](https://github.com/coinbase/agentkit/commit/b21170143825cb1892daaa8e52c68e9c8c446ae1) Thanks [@phdargen](https://github.com/phdargen)! - Bumped x402 packages and fix missing readContract interface
+
+- [#982](https://github.com/coinbase/agentkit/pull/982) [`c3dbef6`](https://github.com/coinbase/agentkit/commit/c3dbef60d1613effc9d9805816bec15f5510fdca) Thanks [@fffilimonov](https://github.com/fffilimonov)! - Added dTelecom action provider for decentralized voice services (WebRTC, STT, TTS) with x402 micropayments, and a voice agent example.
+
+- [#898](https://github.com/coinbase/agentkit/pull/898) [`16fb4a1`](https://github.com/coinbase/agentkit/commit/16fb4a1c4674787ac8442efc88e0830573f3208d) Thanks [@phdargen](https://github.com/phdargen)! - Updated x402 actions to v2 and improved discovery and query/body parameter handling
+
+- [#882](https://github.com/coinbase/agentkit/pull/882) [`8eab8b8`](https://github.com/coinbase/agentkit/commit/8eab8b85a496249e8e080a78c4ecf9b92f6c8504) Thanks [@sanketsaagar](https://github.com/sanketsaagar)! - Updated polygon network apiUrl for both mainnet and amoy
+
+- [#930](https://github.com/coinbase/agentkit/pull/930) [`a3afda3`](https://github.com/coinbase/agentkit/commit/a3afda399aa981fb23ee65a38b40527e98cba5ab) Thanks [@phdargen](https://github.com/phdargen)! - Added erc8004 action providers
+
+- [#922](https://github.com/coinbase/agentkit/pull/922) [`e44e0e4`](https://github.com/coinbase/agentkit/commit/e44e0e458b5d8bbca941e6ac58386027f679f7a3) Thanks [@phdargen](https://github.com/phdargen)! - Added pre-registration of x402 services
+
+## 0.10.4
+
+### Patch Changes
+
+- [#883](https://github.com/coinbase/agentkit/pull/883) [`02f9291`](https://github.com/coinbase/agentkit/commit/02f9291ef09c6edab2bb81ed6de81a06206e866d) Thanks [@pawelpolak2](https://github.com/pawelpolak2)! - Updated Vaults.fyi provider to use the v2 API
+
+- [#863](https://github.com/coinbase/agentkit/pull/863) [`2471251`](https://github.com/coinbase/agentkit/commit/24712518430c787f5c543781b39116708a2d759a) Thanks [@phdargen](https://github.com/phdargen)! - Converted all dynamic to static imports
+
+- [#880](https://github.com/coinbase/agentkit/pull/880) [`f76a238`](https://github.com/coinbase/agentkit/commit/f76a238d2114d3dfe222ef89e111aa4d06d5fe95) Thanks [@phdargen](https://github.com/phdargen)! - Fixed broken create-onchain-agent builds due to breaking changes in newer zora sdk versions
+
+- [#309](https://github.com/coinbase/agentkit/pull/309) [`7260a56`](https://github.com/coinbase/agentkit/commit/7260a5694b20fedfe6dfe12a18c0298ddda2c236) Thanks [@LufyCZ](https://github.com/LufyCZ)! - - Added `sushiRouterActionProvider` to provide swap and quote functionality using the Sushi Router API.
+
+  - Added `swap` action for swaps.
+  - Added `quote` action for fetching quotes for swaps.
+  - Added `sushiDataActionProvider` to provide token finding functionality using the Sushi Data API.
+  - Added `find-tokens` action for fetching tokens by symbols or addresses.
+
+- [#864](https://github.com/coinbase/agentkit/pull/864) [`8515a32`](https://github.com/coinbase/agentkit/commit/8515a3271dd65a61ee9244e4cd162609811e2583) Thanks [@phdargen](https://github.com/phdargen)! - Updated xmtp chatbot to use CDP v2 wallets and new xmtp/agent-sdk
+
 ## 0.10.3
 
 ### Patch Changes
