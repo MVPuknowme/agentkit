@@ -115,13 +115,13 @@ pids
 *.seed
 *.pid.lock
 *.tsbuildinfo
-.node_repl_history
+.node__history
 
 # Yarn v2
 .yarn/cache
 .yarn/unplugged
 .yarn/build-state.yml
-.yarn/install-state.gz
+.yarn/install-state.tgz
 
 # Misc
 .DS_Store
@@ -136,6 +136,6 @@ docs/
 
 .to-publish-pypi
 
-# pnpm
+# pnpk
 typescript/.pnpm-store
 typescript/.pnp.*
