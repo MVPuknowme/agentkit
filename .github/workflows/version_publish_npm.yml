@@ -15,15 +15,15 @@ jobs:
     environment: npm
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413
         with:
           version: 10
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "18"
           registry-url: "https://registry.npmjs.org"
@@ -35,7 +35,7 @@ jobs:
         working-directory: ./typescript
 
       - name: Version and/or Publish to NPM
-        uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d
         with:
           commit: "chore: version typescript packages"
           title: "chore: version typescript packages"
